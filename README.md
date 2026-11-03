@@ -150,4 +150,4 @@ For a useful report, include the game, loader and mod versions; mission; other i
 - **T-90M exterior asset** — [lasha-george / GeorgeLV 3D, Fab listing](https://www.fab.com/listings/c9ce7d02-18e0-4e2d-aae0-5b0cf8fe8746), adapted for this project.
 - Gameplay integration, vehicle systems, and additional authored parts — T-90M Mod Project.
 
-Public distribution remains pending rights review. Third-party assets remain subject to their applicable terms. Incorporating them in this mod does not grant permission to extract or redistribute them as standalone models or textures. This page grants no separate license to the code or incorporated assets.
+Third-party assets remain subject to their applicable terms. Incorporating them in this mod does not grant permission to extract or redistribute them as standalone models or textures. This page grants no separate license to the code or incorporated assets.
