@@ -2,77 +2,159 @@
 
 ![T-90M at the Grafenwoehr training area](media/t90m-exterior.jpg)
 
-A modern tank for GHPC, with a detailed exterior, day and thermal sights, commander weapon control, and its own armor and damage model. Search through the panoramic sight, hand targets to the gunner, and review the results in native AAR.
+Adds the T-90M to GHPC with day and thermal sights, a commander's panoramic sight, a Kord remote weapon station, and custom armor and internal components. You can spot targets from the commander station, pass them to the gunner or take control of the main gun yourself. Hits and damaged components appear in GHPC's after-action review (AAR).
 
-**Preview** · GHPC 20261014.1 · MelonLoader 0.7.3
+Preview · Last tested: GHPC 20261014.1 · MelonLoader 0.6.1 / 0.7.2 / 0.7.3
 
 [Features](#features) · [Installation](#installation) · [Controls](#controls) · [Ammunition](#ammunition) · [Known limitations](#known-limitations) · [Credits](#credits)
 
 ## Features
 
-- **A separate selectable vehicle.** Choose **T-90M** in mission vehicle customization, including Grafenwoehr. The default configuration adds its own entry rather than replacing every T-72.
-- **Gunner optics.** Day and thermal channels, a backup PDT sight, laser ranging, stabilization, and ammunition-specific fire control.
-- **Commander optics and control.** Panoramic TV and thermal channels, hold-to-designate turret slewing, and commander override for the main gun and coaxial machine gun.
-- **Remote weapon station.** A stabilized 12.7 mm Kord with selectable 100/200 rpm firing rates.
-- **Image-based target tracking.** Available in the gunner thermal sight and eligible commander sight magnifications. Tracking assists aim; you remain responsible for identification, ranging, and firing.
-- **Protection and damage.** Modeled armor sections, reactive armor, crew and ammunition stowage, damageable sights and drives, and native after-action review (AAR) presentation.
-- **Laser warning.** Audible and directional warnings, with a manual slew command when a precise bearing is available.
-- **Exterior details.** Animated running gear and case-ejection hatch, plus cosmetic equipment variations.
-- **Adjustable sight display.** Separate reticle/readout lighting and thermal contrast, exposure, gamma, and brightness controls with saved personal settings.
-
-![Turret detail, sights, remote weapon station, and reactive armor](media/turret-detail.jpg)
-
-*Turret detail, including the sights, Kord mount, reactive armor, and stowage.*
+Select T-90M in mission vehicle customization. By default, it appears as a separate vehicle alongside the existing T-72s.
 
 ### Gunner day sight
 
-![Gunner day sight with illuminated reticle and range readout](media/gunner-day.jpg)
+The day sight has 4× and 12× magnification, laser ranging, and stabilization. The fire-control system calculates a firing solution for the selected ammunition. A backup PDT sight is also available.
 
-*Illuminated reticle and range display. Reticle, red readout, and green indicator brightness can be adjusted separately.*
+[![Gunner day sight at 12×, with labels for the aiming mark, ammunition, range, and gun-ready indicator](media/gunner-day-12x.svg)](media/gunner-day-12x.svg)
 
-### Commander and thermal views
+<details>
+<summary>4× view</summary>
 
-| Commander TV | Gunner thermal |
-| --- | --- |
-| ![Commander panoramic TV sight](media/commander-tv.jpg) | ![Gunner thermal sight](media/gunner-thermal.jpg) |
+[![Gunner day sight at 4×](media/gunner-day-4x.svg)](media/gunner-day-4x.svg)
 
-*Commander TV channel and gunner white-hot thermal channel. Screenshots throughout this page were captured during development.*
+</details>
 
-### Damage review
+The illuminated reticle, red readout, and green indicator have separate brightness settings in Ctrl + F9.
+
+### Gunner thermal sight
+
+The thermal sight has wide and narrow fields of view, plus 2× electronic enlargement of the narrow view. Both white-hot and black-hot are available. Start a new automatic track in the narrow or electronically enlarged view.
+
+[![Gunner thermal sight in the narrow view, with labels for tracking, weapon readiness, ammunition, and range](media/gunner-thermal-narrow.svg)](media/gunner-thermal-narrow.svg)
+
+<details>
+<summary>Wide view and 2× electronic enlargement</summary>
+
+[![Gunner thermal sight in the wide view](media/gunner-thermal-wide.svg)](media/gunner-thermal-wide.svg)
+
+[![Gunner thermal sight with 2× electronic enlargement of the narrow view](media/gunner-thermal-digital.svg)](media/gunner-thermal-digital.svg)
+
+</details>
+
+Thermal contrast, exposure, gamma, and brightness are adjustable in Ctrl + F9. Save your settings to keep them between sessions.
+
+### Commander TV sight
+
+The panoramic TV sight has 2×, 4×, and 12× magnification. Hold the middle mouse button to turn the main turret toward where you are looking. Commander override lets you fire the main gun and coaxial machine gun through the commander sight.
+
+[![Commander TV sight at 12×, with labels for the channel, magnification, turret and sight direction, firing rate, range, and RWS mode](media/commander-tv-12x.svg)](media/commander-tv-12x.svg)
+
+<details>
+<summary>2× and 4× views</summary>
+
+[![Commander TV sight at 2×](media/commander-tv-2x.svg)](media/commander-tv-2x.svg)
+
+[![Commander TV sight at 4×](media/commander-tv-4x.svg)](media/commander-tv-4x.svg)
+
+</details>
+
+The stabilized 12.7 mm Kord remote weapon station can fire at 100 or 200 rpm. Its selected rate appears as П1 or П2 at the bottom of the commander display.
+
+### Commander thermal sight
+
+The thermal channel has 2×, 4×, and 12× optical magnification, with an additional 20× electronic view. The 20× setting enlarges the 12× sensor image. Commander override keeps your selected thermal magnification.
+
+[![Commander thermal sight at 12×, with labels for the channel, magnification, turret and sight direction, firing rate, range, and RWS mode](media/commander-thermal-12x.svg)](media/commander-thermal-12x.svg)
+
+<details>
+<summary>2×, 4×, and 20× views</summary>
+
+[![Commander thermal sight at 2×](media/commander-thermal-2x.svg)](media/commander-thermal-2x.svg)
+
+[![Commander thermal sight at 4×](media/commander-thermal-4x.svg)](media/commander-thermal-4x.svg)
+
+[![Commander thermal sight at 20× electronic magnification](media/commander-thermal-20x.svg)](media/commander-thermal-20x.svg)
+
+</details>
+
+### Automatic tracking
+
+Automatic tracking follows a selected area of the sight image. It works in the gunner thermal sight and in both commander channels. By default, new locks are available in the gunner's narrow thermal views and the commander's 12× or 20× views. TV tracking uses the TV image; thermal tracking uses the thermal image. The tracker never reads the target vehicle's position or velocity from the game. You still choose the target, range it, and fire.
+
+An established track can continue through magnification changes within the same sight, including a change to a wider view. The tracker rechecks the target at the new scale and may briefly show Coasting. If the track ends, zoom in and press X to select it again.
+
+#### Reading the tracking indicator
+
+![Tracking indicators: open-corner side bars for ready, four L-shaped corners for locked, and a closed box for coasting](media/tracking-states.svg)
+
+- Ready to lock: four side bars with open corners. Aim at the target and press X. This shape stays on screen while the tracker confirms the lock.
+- Locked: four L-shaped corners. The tracker is following the selected image detail.
+- Coasting: a closed box. The tracker has lost a reliable image match and is predicting motion while trying to find it again. It releases the track if five seconds pass without a reliable match.
+
+The shapes are enlarged here. They appear black in black-hot thermal mode and white otherwise. "Ready" only means there is enough image detail to try a lock; the tracker does not identify vehicles or distinguish friend from foe.
+
+### Armor and damage review
+
+The armor, ERA, crew, and ammunition stowage use GHPC's damage system and appear in AAR. The gunner and commander have separate fire-control computers that can be damaged independently, as can the sight heads and traverse and elevation drives.
 
 ![Native AAR X-ray showing the crew, sights, internal controls, and ammunition](media/aar-internals.jpg)
 
-*Inspect the vehicle's internal layout through GHPC's native AAR X-ray view.*
+AAR keeps track of which ERA blocks each shot detonated. Those blocks appear in red for that shot and disappear from the X-ray view for subsequent shots. Going back to an earlier shot restores the ERA as it was then. The inner side ERA follows the same rule, although its exterior casings remain in place and can still be hit after detonation.
+
+![AAR alternating between the shot that detonated the inner side ERA, highlighted red, and the following shot with those ERA overlays hidden](media/era-aar-sequence.gif)
+
+### Laser warning and smoke
+
+Four laser-warning sensors detect laser illumination. The two forward sensors give a precise bearing; the two wider-angle sensors give an approximate sector. A warning sounds and a red marker or sector appears on the compass. When a precise warning is active, Space turns the turret toward it, taking priority over a normal commander designation. Each sensor can be damaged.
+
+Laser warnings are active only on the T-90M you are controlling. They give you a direction, but cannot identify the source or tell you its range. You deploy smoke manually.
+
+The 3D17 smoke grenades quickly form a dense screen that obscures day and thermal views, including both thermal polarities. The cloud gradually disperses.
+
+### Exterior details
+
+![Turret detail, sights, remote weapon station, and reactive armor](media/turret-detail.jpg)
+
+The exterior includes animated running gear and a working case-ejection hatch. Cosmetic equipment varies between vehicles.
 
 <details>
 <summary>Exterior equipment variation</summary>
 
 ![T-90M with the cosmetic roof cage fitted](media/exterior-cage.jpg)
 
-*One cosmetic equipment preset. A visible cage or net should not be read as a guaranteed protective effect.*
+One of the equipment presets, with the roof cage fitted. The presence of a cage or net does not necessarily mean it provides armor protection.
 
 </details>
 
 ## Requirements
 
+You need Gunner, HEAT, PC! and MelonLoader installed to use this mod.
+
 | Component | Supported configuration |
 | --- | --- |
-| Game | **GHPC 20261014.1**, Steam build **26382663** |
+| Last tested game | GHPC 20261014.1 |
 | Platform | Windows x64, Direct3D 11 |
-| Mod loader | **[MelonLoader 0.7.3](https://github.com/LavaGang/MelonLoader/releases/tag/v0.7.3)** |
+| Mod loader | 0.6.1 or newer; [0.7.3 recommended](https://github.com/LavaGang/MelonLoader/releases/tag/v0.7.3) |
 
-The game and loader must be installed separately. Other game or loader versions are unsupported. The mod checks specific game and loader files at startup; an update can require a compatible mod build even when the displayed game version looks similar.
+Other game builds can run the mod, with a warning in `MelonLoader/Latest.log`. MelonLoader versions below 0.6.1 show an update notice and stop loading the mod. MelonLoader 0.6.1, 0.7.2, and 0.7.3 have been tested. Other builds above the minimum can run it subject to the same startup checks and are marked as untested in the log.
+
+At startup, the mod checks the files it needs, where assemblies were loaded from, and the game code and assets it uses. These checks cannot catch every possible incompatibility, so some game updates may still need a mod update.
+
+### Test PC
+
+Development testing uses an AMD Ryzen 7 9800X3D, an NVIDIA GeForce RTX 5080, and 32 GB of RAM at 2560 × 1440. These are the test machine's specifications, not minimum requirements. Frame rates vary with the mission, the number of vehicles, and graphics settings
 
 ## Installation
 
-Use a complete mod package with the files shown below. GitHub's **Source code** download is not an installable mod.
+These instructions are for the complete mod package containing the files below. GitHub's Source code download cannot be installed as a mod.
 
-1. Install the supported MelonLoader version for GHPC, then close the game.
-2. Extract the mod package. Copy its **Mods** folder into the folder containing **GHPC.exe** (normally the game's **Bin** folder).
+1. Install a supported MelonLoader version for GHPC, then close the game.
+2. Extract the mod package. Copy its Mods folder into the folder containing GHPC.exe, normally the game's Bin folder.
 3. Merge with the existing Mods folder and replace matching T-90M files. Keep your other mods and personal settings.
-4. Start GHPC and select **T-90M** in mission vehicle customization.
+4. Start GHPC and select T-90M in mission vehicle customization.
 
-The result should look like this:
+Check that the files are in these locations:
 
 ```text
 Bin/
@@ -86,34 +168,36 @@ Bin/
         └── internal-layout.json
 ```
 
-**Updating:** close the game and copy the complete new Mods folder over the existing installation. Keep any existing `Mods/T90MData/config.json` and `UserData/T90M` settings. A first installation runs with built-in defaults; a config file is not required.
+### Updating
 
-**Removing:** close the game and remove only `Mods/T90MMod.dll` and `Mods/T90MData`. Back up `config.json` first if you want to keep custom controls. Personal sight settings remain in `UserData/T90M`.
+Close the game and copy the new package's Mods folder over the existing installation. Keep your `Mods/T90MData/config.json` and `UserData/T90M` settings. On a first install, the mod uses its defaults without a config file.
 
-**Going back to an older version:** close the game and restore all T-90M files from a matching, previously saved package. Keep the DLL, model pack, and armor/layout files together.
+### Removing the mod
+
+Close the game and remove only `Mods/T90MMod.dll` and `Mods/T90MData`. Back up `config.json` first if you want to keep custom controls. Personal sight settings remain in `UserData/T90M`.
 
 ## Controls
 
-These are the default T-90M shortcuts. GHPC's own controls still handle weapon selection, firing, laser ranging, zoom, and view switching; press **F1** for the game's control list. Custom game bindings can change the native actions below.
+The shortcuts below use the default bindings. Weapon selection, firing, ranging, zoom, and view switching use GHPC's controls; press F1 to see those. If you have rebound a game action, use your chosen key for it.
 
 | Input | Action |
 | --- | --- |
-| **X** | Toggle image tracking in an eligible sight. Put the target under the aiming mark before engaging. |
-| **V** | Toggle commander override for main-gun/coax control through the commander sight. |
-| **Hold middle mouse** | From the commander sight or commander head view, slew the main turret toward the viewed direction. Release to end designation. |
-| **Space** / native **Aim Override** | Use native designation; while an eligible precise laser warning is active, slew toward its bearing. |
-| **F8** | Cycle Kord RWS rate: **П1 = 100 rpm**, **П2 = 200 rpm**. |
-| **Ctrl + F9** | Open sight lighting / thermal image controls while using a supported sight. |
+| X | Toggle automatic tracking in a supported sight. Aim at the target before pressing. |
+| V | Toggle commander override for main-gun/coax control through the commander sight. |
+| Hold middle mouse | Turn the main turret toward where you are looking from the commander sight or head view. Release to stop designation. |
+| Space / native Aim Override | Turn toward the commander's designation, or toward a precise laser warning when one is active. The laser warning takes priority. |
+| F8 | Cycle Kord RWS rate: П1 = 100 rpm, П2 = 200 rpm. |
+| Ctrl + F9 | Open the sight lighting and thermal image settings while using a supported sight. |
 
-Commander designation is a direction handoff, not a firing command. Allow the gun to align and range the target before firing. Use the gunner station for the guided missile; missile firing is blocked during commander override.
+Commander designation turns the turret without firing. Let the gun align and range the target before firing. Guided missiles must be fired from the gunner station; they cannot be fired during commander override.
 
-Tracking depends on usable crew, sights, stabilization, and a sufficiently clear image. Wide commander views are excluded by default. After changing magnification or views, check the tracking indication and press **X** to designate again if tracking has ended. Do not assume the system can follow a target through smoke, complete cover, or a crossing vehicle.
+Tracking needs functioning crew and sights, stabilization, and a clear enough image. Wide views can carry an existing track but do not accept new locks by default. Check the indicator after changing magnification or views. Smoke, cover, or a vehicle crossing in front of your target can break the lock or pull it onto something else.
 
-The sight control window uses English. Russian letters on the modeled sight displays are intentional. Click **Save all** to keep display settings for the next session; **Restore** returns the selected tab to its saved values.
+The settings window is in English; the Russian markings on the sights are intentional. Click Save all to keep your settings for the next session. Restore returns the current tab to its saved values.
 
 ## Ammunition
 
-The main-gun catalog offers six rounds across four selection categories. Use mission customization to select the available loadout.
+Choose from six main-gun rounds in mission customization:
 
 | Category | Available rounds | Default allocation |
 | --- | --- | --- |
@@ -122,32 +206,39 @@ The main-gun catalog offers six rounds across four selection categories. Use mis
 | HE-FRAG | 3OF26, 3OF82 | 8 × 3OF82 |
 | Guided missile | 9M119M1 | 4 × 9M119M1 |
 
-The default loadout carries **40 rounds**, with **22 in the ready carousel**. The vehicle also has a 7.62 mm PKT coaxial machine gun and the 12.7 mm Kord RWS. Ammunition and protection values are tuned for GHPC; they are not certified real-world performance data.
+The default loadout is 40 rounds, with 22 in the ready carousel. The tank also carries a 7.62 mm PKT coaxial machine gun and the 12.7 mm Kord RWS. Ammunition and armor values are tuned for GHPC and are not verified real-world performance figures.
 
-**3OF82 time fuze:** set a valid FCS range before firing. The fuze timer is programmed at launch and stays fixed during flight, so it does not follow a moving target.
+Set a valid range in the fire-control system before firing 3OF82. Its time fuze is set at launch and does not adjust during flight, even if the target moves.
 
 ## Known limitations
 
-- Tracking remains under development. Moving targets in TV imagery, abrupt maneuvers, stopping, obstructions, and reacquisition can produce losses or imperfect aim. Check the on-screen tracking state before firing.
-- Verification has been performed on the development machine. Independent-PC, low-VRAM, and broad mod-combination testing remain incomplete; no minimum hardware or frame-rate guarantee is established.
-- Some internal details, collision behavior, and AAR transparency remain approximations. Appearance alone does not establish collision or armor coverage.
-- Laser warning supplies a bearing or sector, not the emitter's identity or distance. Smoke deployment remains manual.
+- Small targets, sudden turns, and clutter around the aiming point can cause tracking to drift or lose the target. TV tracking is particularly sensitive to background detail. Check the indicator before firing.
+- Testing on other PCs, GPUs with less VRAM, and combinations of mods is still incomplete. Minimum hardware requirements have not been established.
+- Physical collision shapes are simplified, and some cosmetic fittings have no separate armor protection.
 
 ## Troubleshooting and bug reports
 
-**T-90M does not appear:** check the folder layout and the exact supported game/loader versions. Inspect `MelonLoader/Latest.log` for the first T-90M initialization error.
+### T-90M does not appear
 
-**Missing or damaged pack / unsupported file error:** copy the complete matching package again. After a game update, check whether the mod supports that build. Mixing a new DLL with older data files can prevent initialization.
+Check the folder layout and your MelonLoader version. A different game build alone does not block the mod. Look for the first T-90M initialization error in `MelonLoader/Latest.log`.
 
-**Tracking or commander control does not engage:** check the active sight, magnification, crew, stabilizers, and damage state. Close menus and return to the live vehicle view. If a trial build is involved, include its full version when reporting the problem.
+### Missing or damaged pack / unsupported file error
 
-For a useful report, include the game, loader and mod versions; mission; other installed mods; steps to reproduce; and a screenshot or short recording. Attach the relevant log after checking it for personal paths or other information you do not want to share publicly.
+Copy all files from the same mod package again. Mixing a new DLL with older data files can stop the mod from loading. If this started after a game update, check for compatibility reports or a mod update.
+
+### Tracking or commander control does not engage
+
+Check the active sight, magnification, crew, stabilizers, and damage state. Close menus and return to the live vehicle view. If you are using a trial build, include its full version in the report.
+
+For a bug report, include your game, MelonLoader and mod versions, the mission, other installed mods, and what you did before the problem occurred. A screenshot or short recording helps. Attach the log, but check it first for personal file paths or anything else you do not want to share.
 
 ## Credits
 
-- **Gunner, HEAT, PC!** — Radian Simulations LLC. A separately licensed game installation is required.
-- **MelonLoader** — [LavaGang and contributors](https://github.com/LavaGang/MelonLoader).
-- **T-90M exterior asset** — [lasha-george / GeorgeLV 3D, Fab listing](https://www.fab.com/listings/c9ce7d02-18e0-4e2d-aae0-5b0cf8fe8746), adapted for this project.
-- Gameplay integration, vehicle systems, and additional authored parts — T-90M Mod Project.
+- Gunner, HEAT, PC! by Radian Simulations LLC.
+- MelonLoader by [LavaGang and contributors](https://github.com/LavaGang/MelonLoader).
+- Exterior model by [lasha-george / GeorgeLV 3D, Fab listing](https://www.fab.com/listings/c9ce7d02-18e0-4e2d-aae0-5b0cf8fe8746), adapted for this mod.
+- Gameplay integration, vehicle systems, and additional parts by the T-90M Mod Project.
 
-Third-party assets remain subject to their applicable terms. Incorporating them in this mod does not grant permission to extract or redistribute them as standalone models or textures. This page grants no separate license to the code or incorporated assets.
+## License and assets
+
+Third-party assets are covered by their own licenses. Permission to use this mod does not include permission to extract or redistribute those models and textures on their own. This README does not grant a license to reuse the mod's code or assets.
