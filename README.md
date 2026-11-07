@@ -1,12 +1,12 @@
 # T-90M for Gunner, HEAT, PC!
 
-![T-90M at the Grafenwoehr training area](media/t90m-exterior.jpg)
+![](media/t90m-exterior.jpg)
 
 Adds the T-90M to GHPC with day and thermal sights, a commander's panoramic sight, a Kord remote weapon station, and custom armor and internal components. You can spot targets from the commander station, pass them to the gunner or take control of the main gun yourself. Hits and damaged components appear in GHPC's after-action review (AAR).
 
-Preview · Last tested: GHPC 20261014.1 · MelonLoader 0.6.1 / 0.7.2 / 0.7.3
+Version 1.0.0 · GHPC 20261014.1 · MelonLoader 0.7.3 recommended. See VERIFICATION.txt for the current test scope.
 
-[Features](#features) · [Installation](#installation) · [Controls](#controls) · [Ammunition](#ammunition) · [Known limitations](#known-limitations) · [Credits](#credits)
+[Features](#features) · [Installation](#installation) · [Controls](#controls) · [Ammunition](#ammunition) · [Known limitations](#known-limitations) · [Measured performance](#measured-performance) · [Credits](#credits)
 
 ## Features
 
@@ -16,12 +16,12 @@ Select T-90M in mission vehicle customization. By default, it appears as a separ
 
 The day sight has 4× and 12× magnification, laser ranging, and stabilization. The fire-control system calculates a firing solution for the selected ammunition. A backup PDT sight is also available.
 
-[![Gunner day sight at 12×, with labels for the aiming mark, ammunition, range, and gun-ready indicator](media/gunner-day-12x.svg)](media/gunner-day-12x.svg)
+[![](media/gunner-day-12x.svg)](media/gunner-day-12x.svg)
 
 <details>
 <summary>4× view</summary>
 
-[![Gunner day sight at 4×](media/gunner-day-4x.svg)](media/gunner-day-4x.svg)
+[![](media/gunner-day-4x.svg)](media/gunner-day-4x.svg)
 
 </details>
 
@@ -31,14 +31,14 @@ The illuminated reticle, red readout, and green indicator have separate brightne
 
 The thermal sight has wide and narrow fields of view, plus 2× electronic enlargement of the narrow view. Both white-hot and black-hot are available. Start a new automatic track in the narrow or electronically enlarged view.
 
-[![Gunner thermal sight in the narrow view, with labels for tracking, weapon readiness, ammunition, and range](media/gunner-thermal-narrow.svg)](media/gunner-thermal-narrow.svg)
+[![](media/gunner-thermal-narrow.svg)](media/gunner-thermal-narrow.svg)
 
 <details>
 <summary>Wide view and 2× electronic enlargement</summary>
 
-[![Gunner thermal sight in the wide view](media/gunner-thermal-wide.svg)](media/gunner-thermal-wide.svg)
+[![](media/gunner-thermal-wide.svg)](media/gunner-thermal-wide.svg)
 
-[![Gunner thermal sight with 2× electronic enlargement of the narrow view](media/gunner-thermal-digital.svg)](media/gunner-thermal-digital.svg)
+[![](media/gunner-thermal-digital.svg)](media/gunner-thermal-digital.svg)
 
 </details>
 
@@ -48,14 +48,14 @@ Thermal contrast, exposure, gamma, and brightness are adjustable in Ctrl + F9. S
 
 The panoramic TV sight has 2×, 4×, and 12× magnification. Hold the middle mouse button to turn the main turret toward where you are looking. Commander override lets you fire the main gun and coaxial machine gun through the commander sight.
 
-[![Commander TV sight at 12×, with labels for the channel, magnification, turret and sight direction, firing rate, range, and RWS mode](media/commander-tv-12x.svg)](media/commander-tv-12x.svg)
+[![](media/commander-tv-12x.svg)](media/commander-tv-12x.svg)
 
 <details>
 <summary>2× and 4× views</summary>
 
-[![Commander TV sight at 2×](media/commander-tv-2x.svg)](media/commander-tv-2x.svg)
+[![](media/commander-tv-2x.svg)](media/commander-tv-2x.svg)
 
-[![Commander TV sight at 4×](media/commander-tv-4x.svg)](media/commander-tv-4x.svg)
+[![](media/commander-tv-4x.svg)](media/commander-tv-4x.svg)
 
 </details>
 
@@ -65,16 +65,16 @@ The stabilized 12.7 mm Kord remote weapon station can fire at 100 or 200 rpm. It
 
 The thermal channel has 2×, 4×, and 12× optical magnification, with an additional 20× electronic view. The 20× setting enlarges the 12× sensor image. Commander override keeps your selected thermal magnification.
 
-[![Commander thermal sight at 12×, with labels for the channel, magnification, turret and sight direction, firing rate, range, and RWS mode](media/commander-thermal-12x.svg)](media/commander-thermal-12x.svg)
+[![](media/commander-thermal-12x.svg)](media/commander-thermal-12x.svg)
 
 <details>
 <summary>2×, 4×, and 20× views</summary>
 
-[![Commander thermal sight at 2×](media/commander-thermal-2x.svg)](media/commander-thermal-2x.svg)
+[![](media/commander-thermal-2x.svg)](media/commander-thermal-2x.svg)
 
-[![Commander thermal sight at 4×](media/commander-thermal-4x.svg)](media/commander-thermal-4x.svg)
+[![](media/commander-thermal-4x.svg)](media/commander-thermal-4x.svg)
 
-[![Commander thermal sight at 20× electronic magnification](media/commander-thermal-20x.svg)](media/commander-thermal-20x.svg)
+[![](media/commander-thermal-20x.svg)](media/commander-thermal-20x.svg)
 
 </details>
 
@@ -86,7 +86,7 @@ An established track can continue through magnification changes within the same 
 
 #### Reading the tracking indicator
 
-![Tracking indicators: open-corner side bars for ready, four L-shaped corners for locked, and a closed box for coasting](media/tracking-states.svg)
+![](media/tracking-states.svg)
 
 - Ready to lock: four side bars with open corners. Aim at the target and press X. This shape stays on screen while the tracker confirms the lock.
 - Locked: four L-shaped corners. The tracker is following the selected image detail.
@@ -98,11 +98,11 @@ The shapes are enlarged here. They appear black in black-hot thermal mode and wh
 
 The armor, ERA, crew, and ammunition stowage use GHPC's damage system and appear in AAR. The gunner and commander have separate fire-control computers that can be damaged independently, as can the sight heads and traverse and elevation drives.
 
-![Native AAR X-ray showing the crew, sights, internal controls, and ammunition](media/aar-internals.jpg)
+![](media/aar-internals.jpg)
 
 AAR keeps track of which ERA blocks each shot detonated. Those blocks appear in red for that shot and disappear from the X-ray view for subsequent shots. Going back to an earlier shot restores the ERA as it was then. The inner side ERA follows the same rule, although its exterior casings remain in place and can still be hit after detonation.
 
-![AAR alternating between the shot that detonated the inner side ERA, highlighted red, and the following shot with those ERA overlays hidden](media/era-aar-sequence.gif)
+![](media/era-aar-sequence.gif)
 
 ### Laser warning and smoke
 
@@ -114,14 +114,14 @@ The 3D17 smoke grenades quickly form a dense screen that obscures day and therma
 
 ### Exterior details
 
-![Turret detail, sights, remote weapon station, and reactive armor](media/turret-detail.jpg)
+![](media/turret-detail.jpg)
 
 The exterior includes animated running gear and a working case-ejection hatch. Cosmetic equipment varies between vehicles.
 
 <details>
 <summary>Exterior equipment variation</summary>
 
-![T-90M with the cosmetic roof cage fitted](media/exterior-cage.jpg)
+![](media/exterior-cage.jpg)
 
 One of the equipment presets, with the roof cage fitted. The presence of a cage or net does not necessarily mean it provides armor protection.
 
@@ -137,13 +137,13 @@ You need Gunner, HEAT, PC! and MelonLoader installed to use this mod.
 | Platform | Windows x64, Direct3D 11 |
 | Mod loader | 0.6.1 or newer; [0.7.3 recommended](https://github.com/LavaGang/MelonLoader/releases/tag/v0.7.3) |
 
-Other game builds can run the mod, with a warning in `MelonLoader/Latest.log`. MelonLoader versions below 0.6.1 show an update notice and stop loading the mod. MelonLoader 0.6.1, 0.7.2, and 0.7.3 have been tested. Other builds above the minimum can run it subject to the same startup checks and are marked as untested in the log.
+Other game builds can run the mod, with a warning in `MelonLoader/Latest.log`. MelonLoader versions below 0.6.1 show an update notice and stop loading the mod. The loader implementation was previously tested on MelonLoader 0.6.1, 0.7.2, and 0.7.3. Those earlier tests are carried forward; see VERIFICATION.txt for checks of this release. Other builds above the minimum can run it subject to the same startup checks and are marked as untested in the log.
 
 At startup, the mod checks the files it needs, where assemblies were loaded from, and the game code and assets it uses. These checks cannot catch every possible incompatibility, so some game updates may still need a mod update.
 
 ### Test PC
 
-Development testing uses an AMD Ryzen 7 9800X3D, an NVIDIA GeForce RTX 5080, and 32 GB of RAM at 2560 × 1440. These are the test machine's specifications, not minimum requirements. Frame rates vary with the mission, the number of vehicles, and graphics settings
+Development testing uses an AMD Ryzen 7 9800X3D, an NVIDIA GeForce RTX 5080, and 32 GB of RAM at 2560 × 1440. These are the test machine's specifications, not minimum requirements. Frame rates vary with the mission, the number of vehicles, and graphics settings.
 
 ## Installation
 
@@ -201,9 +201,9 @@ Choose from six main-gun rounds in mission customization:
 
 | Category | Available rounds | Default allocation |
 | --- | --- | --- |
-| APFSDS | 3BM60, 3BM42-2 | 22 × 3BM60 |
-| HEAT-FS | 3BK18M | 6 × 3BK18M |
-| HE-FRAG | 3OF26, 3OF82 | 8 × 3OF82 |
+| APFSDS-T | 3BM60, 3BM42-2 | 22 × 3BM60 |
+| HEAT-FS-T | 3BK18M | 6 × 3BK18M |
+| HEF-FS-T | 3OF26, 3OF82 | 8 × 3OF82 |
 | Guided missile | 9M119M1 | 4 × 9M119M1 |
 
 The default loadout is 40 rounds, with 22 in the ready carousel. The tank also carries a 7.62 mm PKT coaxial machine gun and the 12.7 mm Kord RWS. Ammunition and armor values are tuned for GHPC and are not verified real-world performance figures.
@@ -228,9 +228,15 @@ Copy all files from the same mod package again. Mixing a new DLL with older data
 
 ### Tracking or commander control does not engage
 
-Check the active sight, magnification, crew, stabilizers, and damage state. Close menus and return to the live vehicle view. If you are using a trial build, include its full version in the report.
+Check the active sight, magnification, crew, stabilizers, and damage state. Close menus and return to the live vehicle view.
 
 For a bug report, include your game, MelonLoader and mod versions, the mission, other installed mods, and what you did before the problem occurred. A screenshot or short recording helps. Attach the log, but check it first for personal file paths or anything else you do not want to share.
+
+## Measured performance
+
+With 16 T-90Ms in the training area, average frame rates ranged from **153 to 155 FPS stationary** and **67.7 to 68.9 FPS moving** at about 2.7 m/s. These measurements come from version 0.10.115 on a Ryzen 7 9800X3D, RTX 5080 and 32 GB of RAM at 2560 × 1440.
+
+Each range covers two 20-second runs in an external daytime view with AI disabled. Combat and sight views can give different results. Version 0.10.116 was tested for mission transitions separately.
 
 ## Credits
 
