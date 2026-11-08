@@ -17,7 +17,7 @@ Version 1.0.1 · GHPC 20261014.1 · MelonLoader 0.7.3 recommended.
 - Fixed tracks continuing to move after parking and corrected roadwheel positions, including the front-left wheel sitting too low.
 - Reduced memory allocations when starting an automatic track.
 - Added a setting to turn off the 25 fps thermal refresh limit.
-- Added ammunition counts for each stowage location, with capacity checks.
+- Added ammunition counts for each stowage location, with capacity checks. Now you can customize ammo loadout.
 - Optimized ERA hit and AAR meshes, and aligned the carousel protection plates.
 
 ## Features
