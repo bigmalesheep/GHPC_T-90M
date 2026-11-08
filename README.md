@@ -4,9 +4,21 @@
 
 Adds the T-90M to GHPC with day and thermal sights, a commander's panoramic sight, a Kord remote weapon station, and custom armor and internal components. You can spot targets from the commander station, pass them to the gunner or take control of the main gun yourself. Hits and damaged components appear in GHPC's after-action review (AAR).
 
-Version 1.0.0 · GHPC 20261014.1 · MelonLoader 0.7.3 recommended. See VERIFICATION.txt for the current test scope.
+Version 1.0.1 · GHPC 20261014.1 · MelonLoader 0.7.3 recommended.
 
-[Features](#features) · [Installation](#installation) · [Controls](#controls) · [Ammunition](#ammunition) · [Known limitations](#known-limitations) · [Measured performance](#measured-performance) · [Credits](#credits)
+[Features](#features) · [Installation](#installation) · [Configuration](#configuration) · [Controls](#controls) · [Ammunition](#ammunition) · [Known limitations](#known-limitations) · [Measured performance](#measured-performance) · [Credits](#credits)
+
+## What's new in 1.0.1
+
+- Creates `config.json` on first launch and adds missing settings when updating
+- Supports custom automatic-tracking keys. Invalid bindings no longer stop the mod from loading.
+- Fixed an initialization failure when vehicle asset bundles had different filenames or extra bundle files were present.
+- Fixed silent Kord firing and ammunition not decreasing when used with Pact Increased Lethality 2.1.8.
+- Fixed tracks continuing to move after parking and corrected roadwheel positions, including the front-left wheel sitting too low.
+- Reduced memory allocations when starting an automatic track.
+- Added a setting to turn off the 25 fps thermal refresh limit.
+- Added ammunition counts for each stowage location, with capacity checks.
+- Optimized ERA hit and AAR meshes, and aligned the carousel protection plates.
 
 ## Features
 
@@ -43,6 +55,9 @@ The thermal sight has wide and narrow fields of view, plus 2× electronic enlarg
 </details>
 
 Thermal contrast, exposure, gamma, and brightness are adjustable in Ctrl + F9. Save your settings to keep them between sessions.
+
+Both thermal sights refresh at 25 fps by default, independently of the game's frame rate. Set `LimitThermalTo25Fps` to `false` in [config.json](#configuration) if you prefer a smoother view.
+Automatic tracking capture remains capped at 25 Hz.
 
 ### Commander TV sight
 
@@ -100,7 +115,7 @@ The armor, ERA, crew, and ammunition stowage use GHPC's damage system and appear
 
 ![](media/aar-internals.jpg)
 
-AAR keeps track of which ERA blocks each shot detonated. Those blocks appear in red for that shot and disappear from the X-ray view for subsequent shots. Going back to an earlier shot restores the ERA as it was then. The inner side ERA follows the same rule, although its exterior casings remain in place and can still be hit after detonation.
+AAR keeps track of which ERA blocks each shot detonated. Those blocks appear in red for that shot and disappear from the X-ray view for subsequent shots. Going back to an earlier shot restores the ERA as it was then. The hull inner side ERA follows the same rule, although its exterior casings remain in place and can still be hit after detonation.
 
 ![](media/era-aar-sequence.gif)
 
@@ -137,7 +152,7 @@ You need Gunner, HEAT, PC! and MelonLoader installed to use this mod.
 | Platform | Windows x64, Direct3D 11 |
 | Mod loader | 0.6.1 or newer; [0.7.3 recommended](https://github.com/LavaGang/MelonLoader/releases/tag/v0.7.3) |
 
-Other game builds can run the mod, with a warning in `MelonLoader/Latest.log`. MelonLoader versions below 0.6.1 show an update notice and stop loading the mod. The loader implementation was previously tested on MelonLoader 0.6.1, 0.7.2, and 0.7.3. Those earlier tests are carried forward; see VERIFICATION.txt for checks of this release. Other builds above the minimum can run it subject to the same startup checks and are marked as untested in the log.
+Other game builds can run the mod, with a warning in `MelonLoader/Latest.log`. MelonLoader versions below 0.6.1 show an update notice and stop loading the mod. This release was checked on MelonLoader 0.7.3; earlier builds were also tested on 0.6.1 and 0.7.2. Other builds above the minimum can run it subject to the same startup checks and are marked as untested in the log.
 
 At startup, the mod checks the files it needs, where assemblies were loaded from, and the game code and assets it uses. These checks cannot catch every possible incompatibility, so some game updates may still need a mod update.
 
@@ -170,11 +185,21 @@ Bin/
 
 ### Updating
 
-Close the game and copy the new package's Mods folder over the existing installation. Keep your `Mods/T90MData/config.json` and `UserData/T90M` settings. On a first install, the mod uses its defaults without a config file.
+Close the game and copy the new package's Mods folder over the existing installation. Keep your `Mods/T90MData/config.json` and `UserData/T90M` settings. The mod adds missing settings automatically and creates a default config on first launch.
 
 ### Removing the mod
 
 Close the game and remove only `Mods/T90MMod.dll` and `Mods/T90MData`. Back up `config.json` first if you want to keep custom controls. Personal sight settings remain in `UserData/T90M`.
+
+## Configuration
+
+The mod creates `Mods/T90MData/config.json` on first launch. When updating, keep your existing file: missing settings are added automatically, and your values are preserved. [config.example.json](config.example.json) shows the available settings and their defaults. Close GHPC before editing the file.
+
+You can change key bindings, enable or disable individual features, turn off the thermal refresh limit, and set the ammunition carried in each location. [Configuration reference](CONFIGURATION.md) explains the settings, defaults, and capacity checks. Restart GHPC after saving your changes.
+
+The example is available in this repository; it is not included in the release ZIP.
+
+For a custom tracking shortcut, set `VideoTrackingKey` to an unused keyboard key such as `F7`. `VideoTrackingModifier` can add a held modifier. Invalid or reserved bindings fall back to X for that session; if X is also assigned to another T-90M control, the tracking shortcut is disabled. The log explains the fallback, and your saved values remain unchanged. See the configuration reference for allowed modifiers and reserved keys.
 
 ## Controls
 
@@ -206,7 +231,9 @@ Choose from six main-gun rounds in mission customization:
 | HEF-FS-T | 3OF26, 3OF82 | 8 × 3OF82 |
 | Guided missile | 9M119M1 | 4 × 9M119M1 |
 
-The default loadout is 40 rounds, with 22 in the ready carousel. The tank also carries a 7.62 mm PKT coaxial machine gun and the 12.7 mm Kord RWS. Ammunition and armor values are tuned for GHPC and are not verified real-world performance figures.
+The default loadout is 40 rounds: 22 in the autoloader carousel, 8 in the hull reserve, and 10 in the external reserve. `DefaultAmmoLoadout` lets you set each category's count in each location. Total loads of 1 to 40 rounds are allowed, including empty individual locations; each location must stay within its own capacity. Invalid allocations fall back to the default 40-round loadout and are reported in the log. See the [configuration reference](CONFIGURATION.md#ammunition) for examples.
+
+The tank also carries a 7.62 mm PKT coaxial machine gun and the 12.7 mm Kord RWS. Ammunition and armor values are tuned for GHPC and are not verified real-world performance figures.
 
 Set a valid range in the fire-control system before firing 3OF82. Its time fuze is set at launch and does not adjust during flight, even if the target moves.
 
