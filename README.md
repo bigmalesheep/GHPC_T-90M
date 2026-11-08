@@ -4,21 +4,9 @@
 
 Adds the T-90M to GHPC with day and thermal sights, a commander's panoramic sight, a Kord remote weapon station, and custom armor and internal components. You can spot targets from the commander station, pass them to the gunner or take control of the main gun yourself. Hits and damaged components appear in GHPC's after-action review (AAR).
 
-Version 1.0.1 · GHPC 20261014.1 · MelonLoader 0.7.3 recommended.
+Version 1.0.2 · GHPC 20261014.1 · MelonLoader 0.7.3 recommended.
 
 [Features](#features) · [Installation](#installation) · [Configuration](#configuration) · [Controls](#controls) · [Ammunition](#ammunition) · [Known limitations](#known-limitations) · [Measured performance](#measured-performance) · [Credits](#credits)
-
-## What's new in 1.0.1
-
-- Creates `config.json` on first launch and adds missing settings when updating
-- Supports custom automatic-tracking keys. Invalid bindings no longer stop the mod from loading.
-- Fixed an initialization failure when vehicle asset bundles had different filenames or extra bundle files were present.
-- Fixed silent Kord firing and ammunition not decreasing when used with Pact Increased Lethality 2.1.8.
-- Fixed tracks continuing to move after parking and corrected roadwheel positions, including the front-left wheel sitting too low.
-- Reduced memory allocations when starting an automatic track.
-- Added a setting to turn off the 25 fps thermal refresh limit.
-- Added ammunition counts for each stowage location, with capacity checks. Now you can customize ammo loadout.
-- Optimized ERA hit and AAR meshes, and aligned the carousel protection plates.
 
 ## Features
 
