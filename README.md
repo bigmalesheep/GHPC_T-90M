@@ -4,7 +4,7 @@
 
 Adds the T-90M to GHPC with day and thermal sights, a commander's panoramic sight, a Kord remote weapon station, and custom armor and internal components. You can spot targets from the commander station, pass them to the gunner or take control of the main gun yourself. Hits and damaged components appear in GHPC's after-action review (AAR).
 
-Version 1.0.2 · GHPC 20261014.1 · MelonLoader 0.7.3 recommended.
+Version 1.0.3 · GHPC 20261014.1 · MelonLoader 0.7.3 recommended.
 
 [Features](#features) · [Installation](#installation) · [Configuration](#configuration) · [Controls](#controls) · [Ammunition](#ammunition) · [Known limitations](#known-limitations) · [Measured performance](#measured-performance) · [Credits](#credits)
 
@@ -181,11 +181,9 @@ Close the game and remove only `Mods/T90MMod.dll` and `Mods/T90MData`. Back up `
 
 ## Configuration
 
-The mod creates `Mods/T90MData/config.json` on first launch. When updating, keep your existing file: missing settings are added automatically, and your values are preserved. [config.example.json](config.example.json) shows the available settings and their defaults. Close GHPC before editing the file.
+The mod creates `Mods/T90MData/config.json` on first launch. When updating, keep your existing file: missing settings are added automatically, and your values are preserved. Close GHPC before editing the file.
 
-You can change key bindings, enable or disable individual features, turn off the thermal refresh limit, and set the ammunition carried in each location. [Configuration reference](CONFIGURATION.md) explains the settings, defaults, and capacity checks. Restart GHPC after saving your changes.
-
-The example is available in this repository; it is not included in the release ZIP.
+You can change key bindings, enable or disable individual features, turn off the thermal refresh limit, and set the ammunition carried in each location. Restart GHPC after saving your changes.
 
 For a custom tracking shortcut, set `VideoTrackingKey` to an unused keyboard key such as `F7`. `VideoTrackingModifier` can add a held modifier. Invalid or reserved bindings fall back to X for that session; if X is also assigned to another T-90M control, the tracking shortcut is disabled. The log explains the fallback, and your saved values remain unchanged. See the configuration reference for allowed modifiers and reserved keys.
 
@@ -219,7 +217,7 @@ Choose from six main-gun rounds in mission customization:
 | HEF-FS-T | 3OF26, 3OF82 | 8 × 3OF82 |
 | Guided missile | 9M119M1 | 4 × 9M119M1 |
 
-The default loadout is 40 rounds: 22 in the autoloader carousel, 8 in the hull reserve, and 10 in the external reserve. `DefaultAmmoLoadout` lets you set each category's count in each location. Total loads of 1 to 40 rounds are allowed, including empty individual locations; each location must stay within its own capacity. Invalid allocations fall back to the default 40-round loadout and are reported in the log. See the [configuration reference](CONFIGURATION.md#ammunition) for examples.
+The default loadout is 40 rounds: 22 in the autoloader carousel, 8 in the hull reserve, and 10 in the external reserve. `DefaultAmmoLoadout` lets you set each category's count in each location. Total loads of 1 to 40 rounds are allowed, including empty individual locations; each location must stay within its own capacity. Invalid allocations fall back to the default 40-round loadout and are reported in the log.
 
 The tank also carries a 7.62 mm PKT coaxial machine gun and the 12.7 mm Kord RWS. Ammunition and armor values are tuned for GHPC and are not verified real-world performance figures.
 
