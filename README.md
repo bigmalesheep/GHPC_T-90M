@@ -4,9 +4,16 @@
 
 Adds the T-90M to GHPC with day and thermal sights, a commander's panoramic sight, a Kord remote weapon station, and custom armor and internal components. You can spot targets from the commander station, pass them to the gunner or take control of the main gun yourself. Hits and damaged components appear in GHPC's after-action review (AAR).
 
-Version 1.0.3 · GHPC 20261014.1 · MelonLoader 0.7.3 recommended.
+Version 1.0.4 · GHPC 20261014.1 · MelonLoader 0.7.3 recommended.
 
 [Features](#features) · [Installation](#installation) · [Configuration](#configuration) · [Controls](#controls) · [Ammunition](#ammunition) · [Known limitations](#known-limitations) · [Measured performance](#measured-performance) · [Credits](#credits)
+
+## What's new in 1.0.4
+
+- Reduced CPU work during automatic tracking, particularly while searching for a lost target.
+- Updated tracking controls to follow the manual: zooming out releases the track; zooming in keeps it. Commander 4× acquisition is available in observation/RWS mode.
+- Corrected manual lead compensation while driving sideways and fixed the initial ammunition selection and HUD for custom loadouts.
+- Fixed a startup error caused by invalid commander key bindings, along with shutdown and detached-turret cleanup errors.
 
 ## Features
 
@@ -83,9 +90,11 @@ The thermal channel has 2×, 4×, and 12× optical magnification, with an additi
 
 ### Automatic tracking
 
-Automatic tracking follows a selected area of the sight image. It works in the gunner thermal sight and in both commander channels. By default, new locks are available in the gunner's narrow thermal views and the commander's 12× or 20× views. TV tracking uses the TV image; thermal tracking uses the thermal image. The tracker never reads the target vehicle's position or velocity from the game. You still choose the target, range it, and fire.
+Automatic tracking follows a selected area of the sight image. It works in the gunner thermal sight and in both commander channels. TV tracking uses the TV image; thermal tracking uses the thermal image. The tracker never reads the target vehicle's position or velocity from the game. You still choose the target, range it, and fire.
 
-An established track can continue through magnification changes within the same sight, including a change to a wider view. The tracker rechecks the target at the new scale and may briefly show Coasting. If the track ends, zoom in and press X to select it again.
+The gunner can acquire in the narrow thermal view or its electronic enlargement. In observation/RWS mode, the commander can acquire at 4× or 12×, plus 20× in thermal. Main-gun override requires 12×, or 20× in thermal.
+
+Zooming in within the same sight keeps the selected track while the tracker checks the new image. Zooming out, including reducing electronic enlargement, releases it. Press X to designate again at an allowed magnification. Switching between TV and thermal also releases the track.
 
 #### Reading the tracking indicator
 
@@ -185,7 +194,13 @@ The mod creates `Mods/T90MData/config.json` on first launch. When updating, keep
 
 You can change key bindings, enable or disable individual features, turn off the thermal refresh limit, and set the ammunition carried in each location. Restart GHPC after saving your changes.
 
-For a custom tracking shortcut, set `VideoTrackingKey` to an unused keyboard key such as `F7`. `VideoTrackingModifier` can add a held modifier. Invalid or reserved bindings fall back to X for that session; if X is also assigned to another T-90M control, the tracking shortcut is disabled. The log explains the fallback, and your saved values remain unchanged. See the configuration reference for allowed modifiers and reserved keys.
+For a custom tracking shortcut, set `VideoTrackingKey` to an unused keyboard key such as `F7`. `VideoTrackingModifier` accepts `None`, `LeftControl`, `RightControl`, `LeftAlt`, `RightAlt`, `LeftShift`, `RightShift` or `CapsLock`. Hold the modifier while pressing the tracking key; CapsLock uses the held key, not its on/off state.
+
+Tracking keys must be named keyboard keys. Mouse and joystick buttons, numeric key codes, modifier keys on their own, Escape, Space, Pause, Tab, F1 through F4, F9, F11, F12 and OS/menu keys are reserved. E requires a modifier so normal laser ranging remains available. Avoid conflicts with other T-90M controls, GHPC and other mods. Invalid or reserved bindings fall back to X for that session; if X is also assigned to another T-90M control, the tracking shortcut is disabled. The log explains the fallback, and your saved values remain unchanged.
+
+`EnablePkpWideTracking` allows commander 4× acquisition in observation/RWS mode. It defaults to `true` in 1.0.4, but updates preserve an existing `false`. Set it to `true` if you want to use 4× tracking. This does not enable tracking in the gunner wide view or at low magnification during main-gun override.
+
+For commander designation and override, use `EnableCommanderDesignation` and `EnableCommanderOverride` to disable the features. Invalid `CommanderDesignationKey` or `CommanderOverrideKey` values fall back to middle mouse or V for that session, with a log warning.
 
 ## Controls
 
@@ -202,7 +217,7 @@ The shortcuts below use the default bindings. Weapon selection, firing, ranging,
 
 Commander designation turns the turret without firing. Let the gun align and range the target before firing. Guided missiles must be fired from the gunner station; they cannot be fired during commander override.
 
-Tracking needs functioning crew and sights, stabilization, and a clear enough image. Wide views can carry an existing track but do not accept new locks by default. Check the indicator after changing magnification or views. Smoke, cover, or a vehicle crossing in front of your target can break the lock or pull it onto something else.
+Tracking needs functioning crew and sights, stabilization, and a clear enough image. The gunner wide view and commander low-magnification main-gun override do not support tracking. Check the indicator after changing magnification or views. Smoke, cover, or a vehicle crossing in front of your target can break the lock or pull it onto something else.
 
 The settings window is in English; the Russian markings on the sights are intentional. Click Save all to keep your settings for the next session. Restore returns the current tab to its saved values.
 
